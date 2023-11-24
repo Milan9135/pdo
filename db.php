@@ -12,6 +12,14 @@ class Database {
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    public function insert($name, $email) {
+        $sql = "INSERT INTO users (name, email)
+        VALUES (?, ?)";
+        $statement = $this->pdo->prepare($sql);
+
+        $statement->execute([$name, $email]);
+    }
 }
 
 ?>

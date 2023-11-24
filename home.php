@@ -4,6 +4,10 @@ include "db.php";
 
 $db = new Database();
 
+if (isset($_POST['knopje'])) {
+    $db->insert($_POST['name'], $_POST['email']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +18,10 @@ $db = new Database();
     <title>Test</title>
 </head>
 <body>
-    <p>text</p>
+    <form method="POST">
+        <input type="text" name="name">
+        <input type="email" name="email">
+        <input type="submit" name="knopje">
+    </form>
 </body>
 </html>
