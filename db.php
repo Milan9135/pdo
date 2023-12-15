@@ -32,6 +32,18 @@ class Database {
         }
         return ($result);
     }
-}
 
+    public function update($id, $name, $email) {
+        $sql = "UPDATE users SET name=?, email=? WHERE id=?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$name, $email, $id]);
+    }
+
+    public function delete($id) {
+        $sql = "DELETE FROM users WHERE id=?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$id]);
+    }
+
+}
 ?>
