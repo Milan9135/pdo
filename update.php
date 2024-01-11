@@ -5,15 +5,15 @@ include "db.php";
 $db = new Database();
 
 $id = $_GET["id"];
-$name = $_GET["name"];
+$username = $_GET["username"];
 $email = $_GET["email"];
 
 if (isset($_GET['knopje'])) {
     $id = $_GET["id"];
-    $name = $_GET["name"];
+    $username = $_GET["username"];
     $email = $_GET["email"];
-    $db->update($id, $name, $email);
-    header('Location: home.php');
+    $db->update($id, $username, $email);
+    header('Location: admin.php');
 }
 
 ?>
@@ -24,6 +24,7 @@ if (isset($_GET['knopje'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update row</title>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <h2>Edit the information</h2>
@@ -31,9 +32,9 @@ if (isset($_GET['knopje'])) {
         <label for="id">id:</label>
         <?php echo("<input type='text' name='id' value='$id'>"); ?>
         <label for="name">name:</label>
-        <?php echo("<input type='text' name='name' value='$name'>"); ?>
+        <?php echo("<input type='text' name='username' value='$username'>"); ?>
         <label for="email">email:</label>
-        <?php echo("<input type='text' name='email' value='$email'>"); ?>
+        <?php echo("<input type='email' name='email' value='$email'>"); ?>
         <input type="submit" name="knopje" value="update">
     </form>
     <a href="home.php">back</a>

@@ -9,7 +9,7 @@ $id = $_GET["id"];
 if (isset($_GET['knopje'])) {
     $id = $_GET["id"];
     $db->delete($id);
-    header('Location: home.php');
+    header('Location: admin.php');
 }
 
 ?>
@@ -20,6 +20,7 @@ if (isset($_GET['knopje'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete row</title>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 <form method="GET">
@@ -28,6 +29,6 @@ if (isset($_GET['knopje'])) {
         <?php echo("<input type='text' name='id' value='$id'>"); ?>
         <input type="submit" name="knopje">
     </form>
-    <a href="home.php">back</a>
+    <a href="admin.php">back</a>
 </body>
 </html>
