@@ -13,18 +13,18 @@ class Database {
         }
     }
 
-    public function insert($name, $email, $hash, $salt) {
-        $sql = "INSERT INTO users (username, email, password, salt)
-        VALUES (?, ?, ?, ?)";
+    public function insert($name, $email, $hash) {
+        $sql = "INSERT INTO users (username, email, password)
+        VALUES (?, ?, ?)";
         $statement = $this->pdo->prepare($sql);
         
-        $statement->execute([$name, $email, $hash, $salt]);
+        $statement->execute([$name, $email, $hash]);
     }
 
-    public function select($id = null) {
-        if ($id != null) {
-            $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = ?");
-            $stmt->execute([$id]);
+    public function select($username = null) {
+        if ($username != null) {
+            $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = ?");
+            $stmt->execute([$username]);
             $result = $stmt->fetch();
         } else {
             $stmt = $this->pdo->query("SELECT * FROM users");

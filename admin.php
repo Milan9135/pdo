@@ -6,13 +6,10 @@ $db = new Database();
 
 if (isset($_POST['knopje']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
-    $salt = random_bytes(10);
 
-    $saltedpassword = $password . $salt;
-    
-    $hash = password_hash($saltedpassword, PASSWORD_BCRYPT);
+    $hash = password_hash($password, PASSWORD_BCRYPT);
 
-    $db->insert($_POST['username'], $_POST['email'], $hash, $salt);
+    $db->insert($_POST['username'], $_POST['email'], $hash);
 }
 
 $data = $db->select();
@@ -56,7 +53,6 @@ $data = $db->select();
             <th>username</th>
             <th>email</th>
             <th>password</th>
-            <th>salt</th>
             <th>actie</th>
         </tr>
 <!--                met fetchall -->
@@ -67,7 +63,6 @@ $data = $db->select();
                 <td><?php echo $user['username']?></td>
                 <td><?php echo $user['email']?></td>
                 <td><?php echo $user['password']?></td>
-                <td><?php echo $user['salt']?></td>
                 <td>
                 <?php echo("<a href='update.php?id=$user[0]&username=$user[1]&email=$user[2]'>edit</a>") ?>
                 <?php echo("<a href='delete.php?id=$user[0]'>delete</a>") ?>

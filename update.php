@@ -4,14 +4,14 @@ include "db.php";
 
 $db = new Database();
 
-$id = $_GET["id"];
-$username = $_GET["username"];
-$email = $_GET["email"];
+$id = htmlspecialchars($_GET['id'], ENT_QUOTES, 'UTF-8');
+$username = htmlspecialchars($_GET['username'], ENT_QUOTES, 'UTF-8');
+$email = htmlspecialchars($_GET['email'], ENT_QUOTES, 'UTF-8');
 
 if (isset($_GET['knopje'])) {
-    $id = $_GET["id"];
-    $username = $_GET["username"];
-    $email = $_GET["email"];
+    $id = htmlspecialchars($_GET['id'], ENT_QUOTES, 'UTF-8');
+    $username = htmlspecialchars($_GET['username'], ENT_QUOTES, 'UTF-8');
+    $email = htmlspecialchars($_GET['email'], ENT_QUOTES, 'UTF-8');
     $db->update($id, $username, $email);
     header('Location: admin.php');
 }
